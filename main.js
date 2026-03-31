@@ -70,10 +70,11 @@ const page = await context.newPage();
 
     const date = new Date().toISOString().slice(0, 10);
     let accountNo = '701495762';
-
+    let billNum ='609598757'
     // ======================= BIQ701 ===========================
     // ==========================================================
-    const dir701 = ensureDir('BIQ701');
+    let pathAccount = accountNo;
+    const dir701 = ensureDir(`${pathAccount}/BIQ701`);
     log('Navigating to BIQ701');
     await page.goto('http://10.44.81.82/BIQ/#/BIQ701', {
       waitUntil: 'domcontentloaded'
@@ -154,7 +155,7 @@ await screenshotDesktop({
     // ==========================================================
     // ======================= BIQ702 ===========================
     // ==========================================================
-    const dir702 = ensureDir('BIQ702');
+    const dir702 = ensureDir(`${pathAccount}/BIQ702`);
 
     log('Navigating to BIQ702');
     await page.goto('http://10.44.81.82/BIQ/#/BIQ702', {
@@ -274,7 +275,7 @@ await ExtendDataTab.click();
 // ==========================================================
     // ======================= BIQ704 ===========================
     // ==========================================================
-    const dir704 = ensureDir('BIQ704');
+    const dir704 = ensureDir(`${pathAccount}/BIQ704`);
 
     log('Navigating to BIQ704');
     await page.goto('http://10.44.81.82/BIQ/#/BIQ704', {
@@ -341,11 +342,11 @@ for (let y = 0; y < scrollHeight2; y += viewportHeight2) {
 
 
    accountNo = '9200278009';
-let billingrefnumberDefault = '605219296';
+let billingrefnumberDefault = billNum;
 // ==========================================================
     // ======================= BIQ710 ===========================
     // ==========================================================
-    const dir710Default = ensureDir('BIQ710Default');
+    const dir710Default = ensureDir(`${pathAccount}/710Default`);
 
     log('Navigating to BIQ710');
     await page.goto('http://10.44.81.82/BIQ/#/BIQ710', {
@@ -437,7 +438,7 @@ for (let y = 0; y < scrollHeight6; y += viewportHeight6) {
 // ==========================================================
     // ======================= BIQ705 ===========================
     // ==========================================================
-    const dir705 = ensureDir('BIQ705');
+    const dir705 = ensureDir(`${pathAccount}/BIQ705`);
 
     log('Navigating to BIQ705');
     await page.goto('http://10.44.81.82/BIQ/#/BIQ705', {
@@ -493,7 +494,7 @@ for (let i = 0.5; i <= 2; i++) {
 // ==========================================================
     // ======================= BIQ706 ===========================
     // ==========================================================
-    const dir706 = ensureDir('BIQ706');
+    const dir706 = ensureDir(`${pathAccount}/706`);
 
     log('Navigating to BIQ706');
     await page.goto('http://10.44.81.82/BIQ/#/BIQ706', {
@@ -538,7 +539,7 @@ await billingInput2.fill(accountNo);
 // ==========================================================
     // ======================= BIQ706 with another BA ===========================
     // ==========================================================
-    const dir706_6595990 = ensureDir('BIQ706_6595990');
+    const dir706_6595990 = ensureDir(`${pathAccount}/BIQ706_6595990`);
 
     log('Navigating to BIQ706_6595990');
     await page.goto('http://10.44.81.82/BIQ/#/BIQ706', {
@@ -605,7 +606,7 @@ for (let y = 0; y < scrollHeight706; y += viewportHeight706) {
 // ==========================================================
     // ======================= BIQ709 ===========================
     // ==========================================================
-    const dir709 = ensureDir('BIQ709');
+    const dir709 = ensureDir(`${pathAccount}/BIQ709`);
 
     log('Navigating to BIQ709');
     await page.goto('http://10.44.81.82/BIQ/#/BIQ709', {
@@ -719,7 +720,7 @@ let billingrefnumber = '605026557';
 // ==========================================================
     // ======================= BIQ710 ===========================
     // ==========================================================
-    const dir710 = ensureDir('BIQ710');
+    const dir710 = ensureDir(`${pathAccount}/BIQ710`);
 
     log('Navigating to BIQ710');
     await page.goto('http://10.44.81.82/BIQ/#/BIQ710', {
