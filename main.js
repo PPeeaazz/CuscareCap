@@ -23,7 +23,12 @@ function ensureDir(pageName) {
   }
   return dir;
 }
-
+async function waitLoadingGone(page) {
+  await page.waitForSelector('.__loading.p-component-overlay', {
+    state: 'hidden',
+    timeout: 60000
+  }).catch(() => {}); // กันกรณีไม่มี overlay
+}
 (async () => {
   try {
     log('Script started');
@@ -69,7 +74,7 @@ const page = await context.newPage();
 
 
     const date = new Date().toISOString().slice(0, 10);
-    let accountNo = '701495762';
+    let accountNo = '710002247';
     let billNum ='609598757'
     // ======================= BIQ701 ===========================
     // ==========================================================
@@ -284,9 +289,11 @@ await ExtendDataTab.click();
 
 await page.getByPlaceholder('Billing Account').fill(accountNo);
 + await page.fill('#accountNum', accountNo);
+  await waitLoadingGone(page);
     await page.getByRole('button', { name: 'ค้นหา' }).click();
-    await page.waitForSelector('.p-datatable', { timeout: 60000 });
+      await waitLoadingGone(page);
     await page.waitForTimeout(4500);
+    await page.waitForSelector('.p-datatable', { timeout: 60000 });
 
 // ===============================
 // 📸 BIQ704 – SCROLL & CAPTURE
@@ -310,8 +317,10 @@ for (let y = 0; y < scrollHeight2; y += viewportHeight2) {
   await page.evaluate((y) => {
     window.scrollTo(0, y);
   }, y);
+      await waitLoadingGone(page);
 
   await page.waitForTimeout(800); // ให้ table render ก่อน
+      await waitLoadingGone(page);
 
   // await page.screenshot({
   //   path: path.join(
@@ -319,6 +328,7 @@ for (let y = 0; y < scrollHeight2; y += viewportHeight2) {
   //     `search_${accountNo}_${date}_part${part704}.png`
   //   )
   // });
+  
         await screenshotDesktop({
       filename: path.join(dir704, `search_${accountNo}_${date}_part${part704}.png`)
     });
@@ -371,8 +381,9 @@ await billingrefnoD.fill(billingrefnumberDefault);
 
 
 
-
+  await waitLoadingGone(page);
     await page.getByRole('button', { name: 'ค้นหา' }).click();
+    await waitLoadingGone(page);
     await page.waitForSelector('.p-datatable', { timeout: 60000 });
     await page.waitForTimeout(4500);
 
@@ -749,8 +760,9 @@ await billingrefno.fill(billingrefnumber);
 
 
 
-
+  await waitLoadingGone(page);
     await page.getByRole('button', { name: 'ค้นหา' }).click();
+    await waitLoadingGone(page);
     await page.waitForSelector('.p-datatable', { timeout: 60000 });
     await page.waitForTimeout(4500);
 
